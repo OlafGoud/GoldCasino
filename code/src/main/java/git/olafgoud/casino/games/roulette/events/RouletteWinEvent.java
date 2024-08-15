@@ -11,10 +11,12 @@ public class RouletteWinEvent extends Event implements Cancellable{
     private static final HandlerList HANDLERS = new HandlerList();
     private final Player p;
 	private boolean isCancelled;
+	private final Integer reward;
     
     
-    public RouletteWinEvent(Player player) {
+    public RouletteWinEvent(Player player, Integer reward) {
     	p = player;
+    	this.reward = reward;
     }
     
     public static HandlerList getHandlerList() {
@@ -40,6 +42,10 @@ public class RouletteWinEvent extends Event implements Cancellable{
     public void setCancelled(boolean isCancelled) {
         this.isCancelled = isCancelled;
     }
+
+	public Integer getReward() {
+		return reward;
+	}
     
 
 }

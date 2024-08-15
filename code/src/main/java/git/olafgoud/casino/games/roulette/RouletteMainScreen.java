@@ -114,7 +114,7 @@ public class RouletteMainScreen {
 							}
 						}
 						
-						RouletteWinEvent winEvent = new RouletteWinEvent(p);
+						RouletteWinEvent winEvent = new RouletteWinEvent(p, output);
 						Bukkit.getPluginManager().callEvent(winEvent);
 						
 						if (winEvent.isCancelled()) {
