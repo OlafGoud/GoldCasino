@@ -1,0 +1,8 @@
+api: adsf
+api-version: 1.12.2
+name: GoldCasino
+version: 1,0
+main: git.olafgoud.casino.CasinoMain
+commands:
+  casino:
+    description: Casino command
