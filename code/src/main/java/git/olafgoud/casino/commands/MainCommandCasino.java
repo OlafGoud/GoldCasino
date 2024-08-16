@@ -91,7 +91,7 @@ public class MainCommandCasino implements CommandExecutor {
 		p.sendMessage(ChatColor.YELLOW + " - Made By: " + ChatColor.GOLD + "OlafGoud");
 		p.sendMessage(ChatColor.YELLOW + "");
 		p.sendMessage(ChatColor.YELLOW + "Commands:");
-		p.sendMessage(ChatColor.GOLD+ " - /casino roulette");
+		p.sendMessage(ChatColor.GOLD + " - /casino roulette");
 		p.sendMessage(ChatColor.YELLOW + "   - Opens the menu for the roulette");
 		p.sendMessage(ChatColor.GOLD + " - /casino coin");
 		p.sendMessage(ChatColor.YELLOW + "   - Gives all the coins that are in the config");

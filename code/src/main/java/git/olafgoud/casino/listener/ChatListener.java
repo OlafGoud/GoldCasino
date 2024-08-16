@@ -37,8 +37,8 @@ public class ChatListener implements Listener {
 				e.setCancelled(true);
 				e.getPlayer().openInventory(players.get(e.getPlayer()));
 				CreateItemStack paperCreate = new CreateItemStack(Material.PAPER);
-				paperCreate.setLore("Click Here to change te number");
-				paperCreate.setName("&5" + number.toString());
+				paperCreate.setLore(ChatColor.AQUA + "Click Here to change te number");
+				paperCreate.setName(ChatColor.AQUA + number.toString());
 				
 				InventoryHolder holder = players.get(e.getPlayer()).getHolder();
 				if(!(holder instanceof RouletteMainScreenHolder)) {
