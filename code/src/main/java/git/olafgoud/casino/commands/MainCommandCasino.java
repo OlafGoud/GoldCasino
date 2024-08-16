@@ -9,6 +9,8 @@ import org.bukkit.inventory.ItemStack;
 
 import git.olafgoud.casino.CasinoMain;
 import git.olafgoud.casino.games.roulette.RouletteMainScreen;
+import git.olafgoud.casino.steenpapierschaar.SPSQueeScreen;
+import git.olafgoud.casino.steenpapierschaar.SPSQueeScreenHolder;
 import git.olafgoud.casino.utils.config.MainConfig;
 
 public class MainCommandCasino implements CommandExecutor {
@@ -39,6 +41,9 @@ public class MainCommandCasino implements CommandExecutor {
 		if (args[0].equals("roulette")) {
 			//open roulette gui
 			RouletteMainScreen.getScreen(p);
+		} else if (args[0].equals("steenpapierschaar")) {
+			//opening sps lobby schreen
+			p.openInventory(SPSQueeScreen.lobbyInventory);
 		} else if (args[0].equals("coin")) {
 			//giving the user the coins that are used
 			for (Integer value : CasinoMain.listOfCoins.keySet()) {

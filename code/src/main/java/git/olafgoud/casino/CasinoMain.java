@@ -12,6 +12,7 @@ import git.olafgoud.casino.games.roulette.Roulette;
 import git.olafgoud.casino.listener.ChatListener;
 import git.olafgoud.casino.listener.InventoryClick;
 import git.olafgoud.casino.listener.InventoryClose;
+import git.olafgoud.casino.steenpapierschaar.SPSQueeScreen;
 import git.olafgoud.casino.utils.config.MainConfig;
 
 public class CasinoMain extends JavaPlugin{
@@ -37,6 +38,8 @@ public class CasinoMain extends JavaPlugin{
 		
 		//setting all the arrays for the roulette table
 		Roulette.setNumberList();
+		//init SPS lobby
+		SPSQueeScreen.enableSPSLobby();
 	}
 
 	public static Plugin getPlugin() {
