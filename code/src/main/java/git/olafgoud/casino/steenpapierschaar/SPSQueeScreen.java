@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
 import git.olafgoud.casino.utils.CreateItemStack;
@@ -13,11 +15,13 @@ import git.olafgoud.casino.utils.CreateItemStack;
 public class SPSQueeScreen {
 
 	public static ArrayList<SPSGame> gameList = new ArrayList<>();	
+	public static ArrayList<Player> playerList = new ArrayList<>();	
 	public static Inventory lobbyInventory;
 	
 	public static void enableSPSLobby() {
 		setGameList();
 		lobbyInventory = getScreen();
+		updateScreen();
 	}
 	
 	public static void setGameList() {
@@ -42,19 +46,6 @@ public class SPSQueeScreen {
 		CreateItemStack glassRed = new CreateItemStack(Material.STAINED_GLASS_PANE, 14);
 		glassRed.setName(ChatColor.AQUA + "This space is full");
 
-		for(int i = 0; i < gameList.size(); i++) {
-			Integer playerAmount = gameList.get(i).getPlayersIn();
-			if(playerAmount == 1) {
-				inv.setItem(gameList.get(i).getBeginSlot(), glassRed.getItem());
-				inv.setItem(gameList.get(i).getBeginSlot() + 1, glassGreen.getItem());
-			} else if (playerAmount == 2) {
-				inv.setItem(gameList.get(i).getBeginSlot(), glassRed.getItem());
-				inv.setItem(gameList.get(i).getBeginSlot() + 1, glassRed.getItem());
-			} else {
-				inv.setItem(gameList.get(i).getBeginSlot(), glassGreen.getItem());
-				inv.setItem(gameList.get(i).getBeginSlot() + 1, glassGreen.getItem());
-			}
-		}
 		
 		return inv;
 	}
@@ -68,23 +59,32 @@ public class SPSQueeScreen {
 		}
 		e.setCancelled(true);
 		
+		Player p = (Player) e.getWhoClicked();
+		
+		if(playerList.contains(p)) {
+			p.sendMessage(ChatColor.RED + "You are already in a game");
+			return;
+		}
 		
 		for(SPSGame game : gameList) {
-			if(game.getPlayersIn() > 1) {
+			if(game.getPlayer().size() > 1) {
 				
 				continue;
 			}
-			if(game.getPlayersIn() == 1) {
+			if(game.getPlayer().size() == 1) {
 				if(slot == game.getBeginSlot() + 1) {
-					game.setPlayersIn(2);
+					playerList.add(p);
+					game.addPlayer(p);
 					updateScreen();
-					continue;
+					return;
 				}
 			}
 			if(slot == game.getBeginSlot() || slot == game.getBeginSlot() + 1) {
-				game.setPlayersIn(1);
+				game.addPlayer(p);
+				playerList.add(p);
 				updateScreen();
-				continue;
+				SPSMainScreen.openInventory(p);
+				return;
 			}
 		}
 		
@@ -96,7 +96,7 @@ public class SPSQueeScreen {
 		CreateItemStack glassRed = new CreateItemStack(Material.STAINED_GLASS_PANE, 14);
 		glassRed.setName(ChatColor.AQUA + "This space is full");
 		for(int i = 0; i < gameList.size(); i++) {
-			Integer playerAmount = gameList.get(i).getPlayersIn();
+			Integer playerAmount = gameList.get(i).getPlayer().size();
 			if(playerAmount == 1) {
 				lobbyInventory.setItem(gameList.get(i).getBeginSlot(), glassRed.getItem());
 				lobbyInventory.setItem(gameList.get(i).getBeginSlot() + 1, glassGreen.getItem());
@@ -108,6 +108,23 @@ public class SPSQueeScreen {
 				lobbyInventory.setItem(gameList.get(i).getBeginSlot() + 1, glassGreen.getItem());
 			}
 		}
+	}
+
+	public static void onClose(InventoryCloseEvent e, SPSQueeScreenHolder holder) {
+		if(playerList.contains((Player) e.getPlayer())) {
+			playerList.remove((Player) e.getPlayer());
+			System.out.println("aasdfsfd");
+
+			for(SPSGame game : gameList) {
+				if(game.getPlayer().containsKey(e.getPlayer())) {
+					System.out.println("asfd");
+					game.removePlayer((Player) e.getPlayer());
+					updateScreen();
+					return;
+				}
+			}
+ 		}
+		
 	}
 	
 }
