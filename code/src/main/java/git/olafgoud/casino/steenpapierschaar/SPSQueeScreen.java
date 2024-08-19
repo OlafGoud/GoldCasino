@@ -83,7 +83,7 @@ public class SPSQueeScreen {
 				game.addPlayer(p);
 				playerList.add(p);
 				updateScreen();
-				SPSMainScreen.openInventory(p);
+				SPSMainScreen.openInventory(p, game);
 				return;
 			}
 		}
@@ -110,21 +110,6 @@ public class SPSQueeScreen {
 		}
 	}
 
-	public static void onClose(InventoryCloseEvent e, SPSQueeScreenHolder holder) {
-		if(playerList.contains((Player) e.getPlayer())) {
-			playerList.remove((Player) e.getPlayer());
-			System.out.println("aasdfsfd");
-
-			for(SPSGame game : gameList) {
-				if(game.getPlayer().containsKey(e.getPlayer())) {
-					System.out.println("asfd");
-					game.removePlayer((Player) e.getPlayer());
-					updateScreen();
-					return;
-				}
-			}
- 		}
-		
-	}
+	
 	
 }

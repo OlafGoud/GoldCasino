@@ -5,6 +5,8 @@ import org.bukkit.inventory.InventoryHolder;
 
 public class SPSMainScreenHolder implements InventoryHolder{
 
+	public SPSGame game;
+	public SPSPlayerObject player;
 	
 	@Override
 	public Inventory getInventory() {

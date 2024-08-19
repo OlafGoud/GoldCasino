@@ -24,6 +24,7 @@ public class InventoryClick implements Listener {
 				SPSQueeScreen.handleClickEvents(e);
 			} if (holder1 instanceof SPSMainScreenHolder) {
 				SPSMainScreen.handleClickEvent(e, (SPSMainScreenHolder) holder1);
+				
 			}
 		} 
 	}

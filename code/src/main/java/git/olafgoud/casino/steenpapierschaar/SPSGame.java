@@ -1,5 +1,6 @@
 package git.olafgoud.casino.steenpapierschaar;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.entity.Player;
@@ -8,7 +9,7 @@ public class SPSGame {
 
 	private final Integer gameNumber;
 	private final Integer beginSlot;
-	private HashMap<Player, Integer> players = new HashMap<>();
+	private ArrayList<SPSPlayerObject> players = new ArrayList<>();
 	
 	public SPSGame(int number, Integer slot) {
 		this.gameNumber = number;
@@ -23,16 +24,32 @@ public class SPSGame {
 		return beginSlot;
 	}
 	
-	public HashMap<Player, Integer> getPlayer() {
+	public ArrayList<SPSPlayerObject> getPlayer() {
 		return players;
 	}
 	
 	public void removePlayer(Player p) {
-		players.remove(p);
+		@SuppressWarnings("unchecked")
+		ArrayList<SPSPlayerObject> clone = (ArrayList<SPSPlayerObject>) players.clone();
+		for(SPSPlayerObject obj : clone) {
+			if(obj.getPlayer() == p) {
+				players.remove(obj);
+			}
+		}
 	}
 	
 	public void addPlayer(Player p) {
-		players.put(p, 0);
+		players.add(new SPSPlayerObject(p));
+	}
+	
+	public SPSPlayerObject getSPSPlayer(Player p) {
+		for(SPSPlayerObject obj : players) {
+			if (obj.getPlayer().equals(p)) {
+				return obj;
+				
+			}
+		}
+		return null;
 	}
 
 }
