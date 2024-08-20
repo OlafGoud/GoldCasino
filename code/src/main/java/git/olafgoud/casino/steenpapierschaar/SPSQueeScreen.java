@@ -7,7 +7,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
 import git.olafgoud.casino.utils.CreateItemStack;
@@ -15,7 +14,6 @@ import git.olafgoud.casino.utils.CreateItemStack;
 public class SPSQueeScreen {
 
 	public static ArrayList<SPSGame> gameList = new ArrayList<>();	
-	public static ArrayList<Player> playerList = new ArrayList<>();	
 	public static Inventory lobbyInventory;
 	
 	public static void enableSPSLobby() {
@@ -61,10 +59,6 @@ public class SPSQueeScreen {
 		
 		Player p = (Player) e.getWhoClicked();
 		
-		if(playerList.contains(p)) {
-			p.sendMessage(ChatColor.RED + "You are already in a game");
-			return;
-		}
 		
 		for(SPSGame game : gameList) {
 			if(game.getPlayer().size() > 1) {
@@ -73,15 +67,15 @@ public class SPSQueeScreen {
 			}
 			if(game.getPlayer().size() == 1) {
 				if(slot == game.getBeginSlot() + 1) {
-					playerList.add(p);
 					game.addPlayer(p);
 					updateScreen();
+					SPSMainScreen.openInventory(p, game);
+
 					return;
 				}
 			}
 			if(slot == game.getBeginSlot() || slot == game.getBeginSlot() + 1) {
 				game.addPlayer(p);
-				playerList.add(p);
 				updateScreen();
 				SPSMainScreen.openInventory(p, game);
 				return;

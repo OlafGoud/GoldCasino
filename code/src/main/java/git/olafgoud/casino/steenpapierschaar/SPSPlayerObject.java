@@ -7,13 +7,13 @@ import org.bukkit.inventory.ItemStack;
 public class SPSPlayerObject {
 	
 	private Player p;
-	private Integer inzet;
+	private String inzet;
 	private ItemStack inzetItem;
 	private boolean done;
 	
 	public SPSPlayerObject(Player player) {
 		p = player;
-		inzet = 0;
+		inzet = null;
 		inzetItem = new ItemStack(Material.AIR);
 		done = false;
 	}
@@ -34,11 +34,11 @@ public class SPSPlayerObject {
 		this.inzetItem = inzetItem;
 	}
 
-	public Integer getInzet() {
+	public String getInzet() {
 		return inzet;
 	}
 
-	public void setInzet(Integer inzet) {
+	public void setInzet(String inzet) {
 		this.inzet = inzet;
 	}
 

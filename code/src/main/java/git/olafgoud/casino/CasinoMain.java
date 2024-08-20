@@ -13,15 +13,21 @@ import git.olafgoud.casino.listener.ChatListener;
 import git.olafgoud.casino.listener.InventoryClick;
 import git.olafgoud.casino.listener.InventoryClose;
 import git.olafgoud.casino.steenpapierschaar.SPSQueeScreen;
-import git.olafgoud.casino.utils.config.MainConfig;
+import git.olafgoud.casino.utils.io.DBHandler;
+import git.olafgoud.casino.utils.io.MainConfig;
 
 public class CasinoMain extends JavaPlugin{
 
 	public static HashMap<Integer, ItemStack> listOfCoins = new HashMap<>(); //value, coin
 	private static Plugin plugin;
+	private static boolean dbEnabled;
 	
 	public void onEnable() {
 		plugin = this;
+		
+		//dbEnabled = DBHandler.dataBaseConnection();
+		
+		
 		
 		//config file
 		MainConfig.reloadConfig();
@@ -46,6 +52,14 @@ public class CasinoMain extends JavaPlugin{
 		return plugin;
 	}
 
+
+	public static boolean isDbEnabled() {
+		return dbEnabled;
+	}
+
+	public static void setDbEnabled(boolean dbEnabled) {
+		CasinoMain.dbEnabled = dbEnabled;
+	}
 
 
 }

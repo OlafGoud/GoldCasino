@@ -38,7 +38,6 @@ public class RouletteMainScreen {
 		Inventory inv = holder.roulette.inventory;
 		p.openInventory(inv);
 		
-				
 	}
 	
 	

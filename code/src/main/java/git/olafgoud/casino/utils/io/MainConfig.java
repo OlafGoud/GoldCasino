@@ -1,4 +1,4 @@
-package git.olafgoud.casino.utils.config;
+package git.olafgoud.casino.utils.io;
 
 import java.io.File;
 import java.io.IOException;

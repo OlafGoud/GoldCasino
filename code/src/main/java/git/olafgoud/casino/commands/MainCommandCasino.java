@@ -10,14 +10,12 @@ import org.bukkit.inventory.ItemStack;
 import git.olafgoud.casino.CasinoMain;
 import git.olafgoud.casino.games.roulette.RouletteMainScreen;
 import git.olafgoud.casino.steenpapierschaar.SPSQueeScreen;
-import git.olafgoud.casino.steenpapierschaar.SPSQueeScreenHolder;
-import git.olafgoud.casino.utils.config.MainConfig;
+import git.olafgoud.casino.utils.io.MainConfig;
 
 public class MainCommandCasino implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		// TODO Auto-generated method stub
 		
 		//checking of a player has done the command
 		if(!(sender instanceof Player)) {
