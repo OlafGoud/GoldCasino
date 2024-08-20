@@ -56,6 +56,7 @@ public class SPSQueeScreen {
 	public static void handleClickEvents(InventoryClickEvent e) {
 		Integer slot = e.getRawSlot();
 		
+		//buiten bovenste inv
 		if(slot > (5*9)-1) {
 			return;
 		}
@@ -63,20 +64,11 @@ public class SPSQueeScreen {
 		
 		Player p = (Player) e.getWhoClicked();
 		
-		
+		//kijken voor de lobbys
 		for(SPSGame game : gameList) {
 			if(game.getPlayer().size() > 1) {
 				
 				continue;
-			}
-			if(game.getPlayer().size() == 1) {
-				if(slot == game.getBeginSlot() + 1) {
-					game.addPlayer(p);
-					updateScreen();
-					SPSMainScreen.openInventory(p, game);
-
-					return;
-				}
 			}
 			if(slot == game.getBeginSlot() || slot == game.getBeginSlot() + 1) {
 				game.addPlayer(p);
@@ -88,6 +80,7 @@ public class SPSQueeScreen {
 		
 	}
 	
+	//updates alle screens
 	public static void updateScreen() {
 		CreateItemStack glassGreen = new CreateItemStack(Material.STAINED_GLASS_PANE, 13);
 		glassGreen.setName(ChatColor.AQUA + "Click to join");

@@ -24,7 +24,7 @@ public class DBHandler {
 
 	
 	public static boolean dataBaseConnection() {
-			
+		//database setup
 		Connection databaseConnection = null;
 		try {
 			databaseConnection = DriverManager.getConnection(url, user, password);
@@ -51,6 +51,7 @@ public class DBHandler {
 	}
 	
 	public static void addRouletteValues(String name, Integer inputAmount, Integer outputAmount) {
+		//roulette bijhouden
         Bukkit.getScheduler().runTaskAsynchronously(CasinoMain.getPlugin(), new Runnable() {
 
 		
@@ -82,7 +83,7 @@ public class DBHandler {
 	}
 
 	public static void getRouletteStats(Player p) {
-		// TODO Auto-generated method stub
+		// roulette results terugsturen
 		Bukkit.getScheduler().runTaskAsynchronously(CasinoMain.getPlugin(), new Runnable() {
 
 			
