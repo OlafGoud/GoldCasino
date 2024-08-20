@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import git.olafgoud.casino.CasinoMain;
 import git.olafgoud.casino.games.roulette.RouletteMainScreen;
 import git.olafgoud.casino.steenpapierschaar.SPSQueeScreen;
+import git.olafgoud.casino.utils.io.DBHandler;
 import git.olafgoud.casino.utils.io.MainConfig;
 
 public class MainCommandCasino implements CommandExecutor {
@@ -82,6 +83,8 @@ public class MainCommandCasino implements CommandExecutor {
 			//reloading config
 			MainConfig.reloadConfig();
 			p.sendMessage(ChatColor.YELLOW + "Reload Complete");
+		} else if (args[0].equals("getstats")) {
+			DBHandler.getRouletteStats(p);
 		}
 		
 		return false;

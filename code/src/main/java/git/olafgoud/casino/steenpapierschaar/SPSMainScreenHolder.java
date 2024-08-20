@@ -5,13 +5,20 @@ import org.bukkit.inventory.InventoryHolder;
 
 public class SPSMainScreenHolder implements InventoryHolder{
 
-	public SPSGame game;
-	public SPSPlayerObject player;
+	private SPSGame game;
 	
 	@Override
 	public Inventory getInventory() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public SPSGame getGame() {
+		return game;
+	}
+
+	public void setGame(SPSGame game) {
+		this.game = game;
 	}
 
 }

@@ -14,14 +14,17 @@ import git.olafgoud.casino.utils.CreateItemStack;
 public class SPSQueeScreen {
 
 	public static ArrayList<SPSGame> gameList = new ArrayList<>();	
+	//deze is static omdat hij bij iedereen tegelijk geupdate word
 	public static Inventory lobbyInventory;
 	
+	//enabled de games
 	public static void enableSPSLobby() {
 		setGameList();
 		lobbyInventory = getScreen();
 		updateScreen();
 	}
 	
+	//maakt de games
 	public static void setGameList() {
 		gameList.add(new SPSGame(0, 10));
 
@@ -29,7 +32,7 @@ public class SPSQueeScreen {
 
 	}
 	
-	
+	//geeft het scherm
 	public static Inventory getScreen() {
 		SPSQueeScreenHolder holder = new SPSQueeScreenHolder();
 		Inventory inv = Bukkit.createInventory(holder, 5*9, "Steen Papier Schaar Lobby");
@@ -49,6 +52,7 @@ public class SPSQueeScreen {
 	}
 	
 	
+	//handeld de klik events
 	public static void handleClickEvents(InventoryClickEvent e) {
 		Integer slot = e.getRawSlot();
 		

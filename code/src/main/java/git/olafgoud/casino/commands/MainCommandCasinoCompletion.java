@@ -27,6 +27,8 @@ public class MainCommandCasinoCompletion implements TabCompleter {
 			list.add("coin");
 			list.add("addcoin");
 			list.add("reloadconfig");
+			list.add("steenpapierschaar");
+			list.add("getstats");
 			
 			if(args[0] == "") {
 				return list;

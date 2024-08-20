@@ -25,7 +25,7 @@ public class CasinoMain extends JavaPlugin{
 	public void onEnable() {
 		plugin = this;
 		
-		//dbEnabled = DBHandler.dataBaseConnection();
+		dbEnabled = DBHandler.dataBaseConnection();
 		
 		
 		

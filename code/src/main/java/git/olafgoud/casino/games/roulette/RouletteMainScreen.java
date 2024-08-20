@@ -21,10 +21,11 @@ import git.olafgoud.casino.CasinoMain;
 import git.olafgoud.casino.games.roulette.events.RouletteWinEvent;
 import git.olafgoud.casino.listener.ChatListener;
 import git.olafgoud.casino.utils.CasinoSlot;
+import git.olafgoud.casino.utils.io.DBHandler;
 
 public class RouletteMainScreen {
 
-	
+	//map for cansel id's
 	public static HashMap<Player, Integer> ID = new HashMap<>();
 	
 	public static void getScreen(Player p) {
@@ -81,6 +82,7 @@ public class RouletteMainScreen {
 			Integer randomNumber = rand.nextInt(37);
 		
 			Integer output = roulette.checkForWin(randomNumber);
+			Integer input = roulette.getInput(randomNumber);
 			holder.roulette.setRunning(true);
 			ID.put(p, Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(CasinoMain.getPlugin(), new Runnable() {
 				
@@ -124,6 +126,10 @@ public class RouletteMainScreen {
 						
 						// coins uitgeven
 						Integer output1 = output;
+						if(CasinoMain.isDbEnabled()) {
+							DBHandler.addRouletteValues(p.getName(), input, output);
+						}
+
 						Set<Integer> set = CasinoMain.listOfCoins.keySet();
 						int[] ints = Arrays.stream(set.toArray()).mapToInt(o -> (int)o).toArray();
 						ArrayList<Integer> sortedList = insertionSort(ints);

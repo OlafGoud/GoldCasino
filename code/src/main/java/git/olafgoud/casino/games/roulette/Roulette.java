@@ -267,4 +267,26 @@ public class Roulette {
 		return output;
 	}
 	
+	
+	public Integer getInput(Integer winningNumber) {
+		Integer output = 0;
+		for (CasinoSlot slot : rouletteSlots) {
+			if(slot.getInput().getType().equals(Material.AIR)) {
+				continue;
+			}
+
+			for(Integer keys : CasinoMain.listOfCoins.keySet()) {
+				ItemStack input = slot.getInput().clone();
+				input.setAmount(1);
+				if(input.equals(CasinoMain.listOfCoins.get(keys))) {
+					output += (int) (keys * slot.getInput().getAmount());
+				}
+			}
+		}
+		
+		
+		
+		return output;
+	}
+	
 }
